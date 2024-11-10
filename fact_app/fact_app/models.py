@@ -8,7 +8,7 @@ class Customer(models.Model):
         ('F', 'Feminin'),
     )
      
-     nom = models.CharField(max_length=132)
+     name = models.CharField(max_length=132)
      email = models.EmailField()
      phone = models.CharField(max_length=132)
      adresse = models.CharField(max_length=64)
@@ -38,7 +38,7 @@ class Invoice(models.Model):
     save_by = models.ForeignKey(User, on_delete=models.PROTECT)
     Invoice_date_time = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=10000, decimal_places=2)
-    last_update_date = models.DateTimeField(null=True, blank=True)
+    last_updated_date = models.DateTimeField(null=True, blank=True)
     paid = models.BooleanField(default=False)
     invoice_type = models.CharField(max_length=1, choices=INVOICE_TYPE)
     comments = models.CharField(null=True, max_length=1000, blank=True)
@@ -48,7 +48,7 @@ class Invoice(models.Model):
         verbose_name_plural = "Invoices"
 
     def __str__(self):
-        return f"{self.customer.name}{self.customer.invoice_date_time}"
+        return f"{self.customer.name}_{self.Invoice_date_time}"
     
     @property
     def get_total(self):
