@@ -11,11 +11,11 @@ class Customer(models.Model):
      name = models.CharField(max_length=132)
      email = models.EmailField()
      phone = models.CharField(max_length=132)
-     adresse = models.CharField(max_length=64)
+     adresse = models.CharField(max_length=64),
      sex = models.CharField(max_length=1, choices=SEX_TYPES)
      age = models.CharField(max_length=12)
      city = models.CharField(max_length=132)
-     zip_code = models.CharField(max_length=16)
+     zip_code = models.CharField(max_length=16, null=True)
      created_date = models.DateTimeField(auto_now_add=True)
      save_by = models.ForeignKey(User, on_delete= models.PROTECT)
 
