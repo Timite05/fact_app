@@ -49,3 +49,21 @@ class AddCustomerView(View):
            messages.error(request,f"Sorry our system is detecting the following issue {e}." )
         
         return render(request, self.template_name)
+    
+
+class AddInvoiceView(View):
+    "ajouter nouvelle facture"
+
+    template_name = 'add_invoice.html'
+    customers = Customer.objects.select_related('save_by').all()
+
+    context = {
+        'customers' : customers
+    }
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.context)
+    
+    def post(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.context)
+
